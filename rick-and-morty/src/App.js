@@ -4,21 +4,26 @@ import CharacterList from "./components/CharacterList"
 // import characters from "./data/characters"
 import SearchForm from "./components/SearchForm"
 import React, {useState, useEffect} from "react"
+import CharacterForm from './components/CharacterForm'
 // import Character from "./components/Character
 function App() {
 
+  // hooks
+  //fetch
+  //local variable
+  // return 
   const [queryChar, setQueryChar] = useState("")
   const [characters, setCharacters] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-      const resp = await fetch(`http://localhost:3000/characters/`)
-      const characterList = await resp.json()
-      setCharacters(characterList)
-    } catch (error) {
-      alert(error)
-    }
+      try{
+        const resp = await fetch(`http://localhost:3000/characters`)
+        const characterList = await resp.json()
+        setCharacters(characterList)
+      } catch(error){
+        alert(error)
+      }
   }
     fetchData()
   }, [])
@@ -27,6 +32,7 @@ function App() {
   return (
     <div className="App">
       <SearchForm queryChar={queryChar} setQueryChar={setQueryChar} />
+      <CharacterForm setCharacters={setCharacters}/>
       <CharacterList characters={filteredChar}/>
     </div>
   );

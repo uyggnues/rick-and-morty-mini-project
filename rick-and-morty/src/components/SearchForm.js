@@ -12,6 +12,7 @@ const SearchForm = ({queryChar, setQueryChar}) => {
             <input 
             className="search-input" 
             type="text" 
+            placeholder='Search for ...'
             onChange={handleChange} 
             value={queryChar} 
             />
